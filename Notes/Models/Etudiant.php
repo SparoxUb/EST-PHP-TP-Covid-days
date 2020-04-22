@@ -76,7 +76,7 @@ class Etudiant extends DB_Connexion implements DAO{
     public function Find_By_CNE(string $CNE){
         $string_of_search = " SELECT * FROM etudiant WHERE CNE = '$CNE' ";
         $statement = $this->Connexion->query( $string_of_search);
-        if( $row = $statement->fetch(PDO::FETCH_ASSOC) ){
+        if( $statement && $row = $statement->fetch(PDO::FETCH_ASSOC) ){
             $this->num_etu = $row['num_etu'];
             $this->nom_etu = $row['nom_etu'];
             $this->date_naiss = $row['date_naiss'];
@@ -91,7 +91,7 @@ class Etudiant extends DB_Connexion implements DAO{
     public function Find(string $id){
         $string_of_search = " SELECT * FROM etudiant WHERE num_etu = $id ";
         $statement = $this->Connexion->query( $string_of_search);
-        if( $row = $statement->fetch(PDO::FETCH_ASSOC) ){
+        if( $statement && $row = $statement->fetch(PDO::FETCH_ASSOC) ){
             $this->num_etu = $row['num_etu'];
             $this->nom_etu = $row['nom_etu'];
             $this->date_naiss = $row['date_naiss'];
@@ -119,6 +119,7 @@ class Etudiant extends DB_Connexion implements DAO{
         }
         return $students;
     }   
+
 
     public function Check_CNE_for_Update(){
         $etudiant = new Etudiant();

@@ -91,7 +91,7 @@ class Enseignant extends DB_Connexion implements DAO{
     public function Find(string $id){
         $string_of_search = " SELECT * FROM enseignant WHERE num_ens = $id ";
         $statement = $this->Connexion->query( $string_of_search);
-        if( $row = $statement->fetch(PDO::FETCH_ASSOC) ){
+        if( $statement && $row = $statement->fetch(PDO::FETCH_ASSOC) ){
             $this->num_ens = $row['num_ens'];
             $this->nom_ens = $row['nom_ens'];
             $this->anciennete = $row['anciennete'];
@@ -119,6 +119,21 @@ class Enseignant extends DB_Connexion implements DAO{
         }
         return $profs;
     }   
+
+
+    public function Get_names_ids(){
+        $profs = [];
+        $sql_statement = "SELECT * FROM enseignant order by num_ens";
+        $statement = $this->Connexion->query($sql_statement);
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach($rows as $row){
+            $prof = (object) ['num_ens'=>$row['num_ens']];
+            $prof->nom_ens = $row['nom_ens'];
+            array_push($profs,$prof);
+        }
+        return $profs;
+    }
+
 
     public function Check_num_matr_for_Update(){
         $prof = new Enseignant();
