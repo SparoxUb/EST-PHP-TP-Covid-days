@@ -25,7 +25,7 @@
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
-                    Une <strong> Erreure Servenue </strong>, La modification est échouée!
+                    Une <strong> Erreure Servenue </strong>, L\'insertion est échouée!
                 </div>
             </div>
             ';

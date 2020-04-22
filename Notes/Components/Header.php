@@ -35,9 +35,9 @@
                 <a href="./Gestion_Des_Etudiants.php"
                     class="list-group-item list-group-item-action <?php echo ($tab==2? "bg-active":"bg-light") ?>">
                     Gestion des Etudiants </a>
-                <a href="#"
+                <a href="./Gestion_Des_Enseignants.php"
                     class="list-group-item list-group-item-action <?php echo ($tab==3? "bg-active":"bg-light") ?>">
-                    Fiche d'etudiant </a>
+                    Gestion des Enseignants </a>
                 <a href="#"
                     class="list-group-item list-group-item-action <?php echo ($tab==4? "bg-active":"bg-light") ?>">
                     Relevé de notes </a>

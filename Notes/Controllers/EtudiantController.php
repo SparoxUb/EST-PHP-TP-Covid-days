@@ -95,24 +95,51 @@
         }
     }else{
 
-    if(isset($_POST['ToDelete'])){
 
-        $toDelete = $_POST['ToDelete'];
-        if(!empty($toDelete)&&ctype_digit($toDelete) ){
+        if(isset($_GET['i'])||isset($_GET['q'])){
 
-            if ( $etudiant->Find($toDelete) ){
-                if( $etudiant->Delete() )
-                    $Deleted = true;
-                else    
-                    $Deleted = false;
+            if(isset($_GET['i'])){
+                $studId = $_GET['i'];
+                if(empty($studId)|| !ctype_digit($studId)){
+                    $Fiche_error=true;
+                }else{
+                    $Fiche_etudiant= new Etudiant();
+                    if( !$Fiche_etudiant->Find($studId) )
+                    $Fiche_error=true;               
+                }
+            }else{
+                $studCNE = $_GET['q'];
+                if(empty($studCNE)|| !ctype_alnum($studCNE)){
+                    $Fiche_error=true;               
+                }else{
+                    $Fiche_etudiant= new Etudiant();
+                    if( !$Fiche_etudiant->Find_By_CNE($studCNE) )
+                    $Fiche_error=true; 
+                }
+            }
+
+
+        }else{
+
+            if(isset($_POST['ToDelete'])){
+
+                $toDelete = $_POST['ToDelete'];
+                if(!empty($toDelete)&&ctype_digit($toDelete) ){
+
+                    if ( $etudiant->Find($toDelete) ){
+                        if( $etudiant->Delete() )
+                            $Deleted = true;
+                        else    
+                            $Deleted = false;
+                    }
+                }
+                
+            }
+
+            $Etudiants = $etudiant->GetAll();
+            unset($etudiant);
             }
         }
-        
     }
-
-    $Etudiants = $etudiant->GetAll();
-    unset($etudiant);
-
-    }}
 
 ?>
