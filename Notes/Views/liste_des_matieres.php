@@ -84,7 +84,18 @@
                 </div>
 
 
+                <?php 
+            
+            if( isset($_GET['q']) ){
+
+                echo ' <h3 class="text-center" >  Résultats pour la recherche : \''.$_GET['q'].'\'  </h3> ';
+
+            }
+            
+            ?>
+
             </form>
+
         </div>
     </div>
 

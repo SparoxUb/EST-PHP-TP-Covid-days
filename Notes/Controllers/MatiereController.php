@@ -11,7 +11,10 @@
     
     $found = false;
     if($matiere->Find($_GET['Modify']))
-    $found=true;
+        $found=true;
+
+        $profs  = $enseignant->Get_names_ids();
+    
 
     }else{
     
@@ -46,16 +49,16 @@
             $Validation_Messages['coef']=" Coefficient saisi est invalide ";
         }
 
-        $tmp = new Enseignant();
         if( empty($_num_ens ) ){
             $Empty_Messages["_num_ens"]=" Choisissez l'Enseignant  ";
         }
-        if( !ctype_digit($_num_ens) || !$tmp->Find($_num_ens) ){
+        if( !ctype_digit($_num_ens) || !$enseignant->Find($_num_ens) ){
             $Validation_Messages['_num_ens']=" Choix invalide ";
         }else{
             $_num_ens =filter_var($_num_ens ,FILTER_SANITIZE_STRING);
         }
-        unset($tmp);
+        unset($enseignant);
+
         
 
 
@@ -76,15 +79,12 @@
                                             }
             }
             else
-            if( $matiere->Find($_POST['num_ens']) ){  /// Edit
+            if( $matiere->Find($_POST['num_mat']) ){  /// Edit
 
                 $matiere->nom_mat = $nom_mat;
                 $matiere->coef = $coef;
-                $matiere->num_matr = $num_matr;
                 $matiere->_num_ens  = $_num_ens ;
-                if( ! $matiere->Check_num_matr_for_Update() )
-                    $Validation_Messages['num_matr']="Numéro de Matricule est déja enregistré pour un autre matiere ";
-                else
+                
                 if( $matiere->Update() ){
                     $matieres = $matiere->GetAll();
                     unset($matiere);
@@ -114,12 +114,13 @@
                     $Fiche_error=true;               
                 }
             }else{
-                $studnum_matr = $_GET['q'];
-                if(empty($studnum_matr)|| !ctype_alnum($studnum_matr)){
-                    $Fiche_error=true;               
+                $keyword = $_GET['q'];
+                if(empty($keyword)|| !ctype_alnum($keyword)){
+                    $Fiche_error=true; 
+                    $matieres=[];              
                 }else{
-                    $Fiche_matiere= new matiere();
-                    if( !$Fiche_matiere->Find_By_num_matr($studnum_matr) )
+                    $matieres = $matiere->search($keyword);
+                    if( !$matieres )
                     $Fiche_error=true; 
                 }
             }
@@ -141,7 +142,6 @@
                 }
                 
             }
-
             $matieres = $matiere->GetAll();
             $profs  = $enseignant->Get_names_ids();
             unset($enseignant);

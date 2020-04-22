@@ -64,7 +64,7 @@ class Matiere extends DB_Connexion implements DAO{
             trigger_error(" Matiere non insérée pour la modifier ! ",E_USER_NOTICE);
             return false;
         }
-        $string_of_update = " UPDATE matiere SET nom_mat='$this->nom_mat', _num_ens='$this->_num_ens', coef='$this->coef' WHERE num_mat = $this->num_mat ";
+        $string_of_update = " UPDATE matiere SET nom_mat='$this->nom_mat', _num_ens= $this->_num_ens, coef='$this->coef' WHERE num_mat = $this->num_mat ";
         if( $this->Connexion->query( $string_of_update) ){
             return true;
         }
@@ -126,15 +126,29 @@ class Matiere extends DB_Connexion implements DAO{
         }
         return false;
     }
-    
 
-    public function Check__num_ens_for_Update(){
-        $matiere = new matiere();
-        $matiere->Find_By__num_ens($this->_num_ens);
-        if( $this->num_mat != $matiere->num_mat)
-            return true;
-        return false;
+    public function search(string $keyword){
+
+        $matieres = [];
+        $sql_statement = "SELECT * FROM matiere where nom_mat like '%$keyword%' order by num_mat ";
+        $statement = $this->Connexion->query($sql_statement);
+        if(!$statement)
+        return [];
+        
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach($rows as $row){
+            $matiere = (object) ['num_mat'=>''];
+            $matiere->num_mat = $row['num_mat'];
+            $matiere->nom_mat = $row['nom_mat'];
+            $matiere->_num_ens = $this->Get_Matieres_Ens($row['_num_ens']) ;
+            $matiere->coef = $row['coef'];
+            array_push($matieres,$matiere);
+        }
+        return $matieres;
+        
     }
+
+    
 
     
     public function __destruct()
