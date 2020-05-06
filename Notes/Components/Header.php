@@ -42,10 +42,13 @@
                     class="list-group-item list-group-item-action <?php echo ($tab==4? "bg-active":"bg-light") ?>">
                     Gestion des Matières
                 </a>
+                <a href="./Gestion_Des_Notes.php"
+                    class="list-group-item list-group-item-action <?php echo ($tab==5? "bg-active":"bg-light") ?>">
+                    Gestion des notes
+                </a>
                 <a href="#"
-                    class="list-group-item list-group-item-action <?php echo ($tab==5? "bg-active":"bg-light") ?>">Profile</a>
-                <a href="#"
-                    class="list-group-item list-group-item-action <?php echo ($tab==6? "bg-active":"bg-light") ?>">Status</a>
+                    class="list-group-item list-group-item-action <?php echo ($tab==6? "bg-active":"bg-light") ?>">Relevés
+                    de Notes</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
