@@ -3,7 +3,7 @@
 
 require_once("./Classes/DAO.php");
 require_once("./Classes/DB_Connexion.php");
-
+require_once('./Models/matiere.php');
 class Note extends DB_Connexion implements DAO{
 
     public string $id;
@@ -137,6 +137,40 @@ class Note extends DB_Connexion implements DAO{
         return true;
     }
     
+
+    public function Get_Student_Notes($num_etu){
+
+        $notes= [];
+
+        $sql_statement = "SELECT * FROM notes WHERE _num_etu = $num_etu";
+        $statement = $this->Connexion->query($sql_statement);
+        if(!$statement)
+        return [];
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach($rows as $row){
+            $notes = array_merge($notes,[ "'".$row['_num_mat']."'" => $row['note'] ]);
+        }
+        return $notes;
+
+    }
+
+    public function Calculer_Moyenne($num_etu){
+        $tmp = 0;
+        $sommeDesCoefs = 0;
+        $matiere = new Matiere();
+        $sql_statement = "SELECT * FROM notes WHERE _num_etu = $num_etu";
+        $statement = $this->Connexion->query($sql_statement);
+        if(!$statement)
+        return [];
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach($rows as $row){
+            if( !empty($row['note']) && $matiere->Find($row['_num_mat'])){
+                $tmp += ( (double) $row['note'] ) * ( (double) $matiere->coef );
+                $sommeDesCoefs += ( (double) $matiere->coef );
+            }
+        }
+        return $tmp/$sommeDesCoefs;
+    }
 
     
     public function __destruct()

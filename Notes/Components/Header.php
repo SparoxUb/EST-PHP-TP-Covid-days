@@ -46,9 +46,11 @@
                     class="list-group-item list-group-item-action <?php echo ($tab==5? "bg-active":"bg-light") ?>">
                     Gestion des notes
                 </a>
-                <a href="#"
+                <a href="./Releves_de_Notes.php"
                     class="list-group-item list-group-item-action <?php echo ($tab==6? "bg-active":"bg-light") ?>">Relevés
                     de Notes</a>
+                <a href="./#.php"
+                    class="list-group-item list-group-item-action <?php echo ($tab==7? "bg-active":"bg-light") ?>">Statistiques</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->

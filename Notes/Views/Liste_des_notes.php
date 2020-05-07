@@ -97,7 +97,7 @@ if( isset($res) ){
                         <td>'. $etudiant->CNE .'</td>
                         <td> <div class="form-group d-inline">
                           <input type="text"
-                            class="form-control col-11 d-inline';
+                            class="form-control col-11 d-inline preventing';
                             if(isset($notesInvalides[''.$etudiant->num_etu]))
                                 echo ' btn-outline-danger ';
                             echo '" name="'.$etudiant->num_etu.'" value="'. $note .'" maxlength="5" minlength="1" id="" aria-describedby="helpId" placeholder="" />
