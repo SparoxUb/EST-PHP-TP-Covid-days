@@ -43,9 +43,41 @@ switch($matiereError){
     <a name="" id="" class="btn btn-warning px-4 py-2" href="./Gestion_Des_Notes.php" role="button"> <i
             class="fa fa-arrow-left"></i> Liste des Matières </a>
 </div>
-<div class="row w-100 d-block my-5">
 
-    <form action="./Gestion_Des_Notes.php" class="w-75 mx-auto my-3" method=" post">
+<?php 
+
+if( isset($res) ){
+    if($res===true){
+    echo'
+    <div class="alert alert-success alert-dismissible fade show px-3 py-4 w-75 mx-auto mt-4 mb-n3" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        Modifications sont bien faites ! ';
+        if(!empty($notesInvalides)){
+            echo ' Les champs Erronés ne sont pas touchés !';
+        }
+        echo'
+    </div>
+    ';}
+    else
+    echo'
+    <div class="alert alert-warning alert-dismissible fade show px-3 py-4 w-75 mx-auto mt-4 mb-n3" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+    Modification est échouée !
+</div>
+    ';
+}
+
+?>
+
+<div class="row w-100 d-block my-5">
+    <form action="./Gestion_Des_Notes.php?M=<?php echo $_GET['M'] ?>" class="w-75 mx-auto my-3" method="post">
+        <input type="hidden" name="M" value="<?php echo $_GET['M'] ?>" />
         <table class="table col-12 table-hover table-striped ">
             <thead>
                 <tr>
@@ -65,7 +97,10 @@ switch($matiereError){
                         <td>'. $etudiant->CNE .'</td>
                         <td> <div class="form-group d-inline">
                           <input type="text"
-                            class="form-control col-11 d-inline" name="'.$etudiant->num_etu.'-'.$matiere->num_mat.'" value="'. $note .'" maxlength="5" minlength="1" id="" aria-describedby="helpId" placeholder="" />
+                            class="form-control col-11 d-inline';
+                            if(isset($notesInvalides[''.$etudiant->num_etu]))
+                                echo ' btn-outline-danger ';
+                            echo '" name="'.$etudiant->num_etu.'" value="'. $note .'" maxlength="5" minlength="1" id="" aria-describedby="helpId" placeholder="" />
                             /20</div> 
                         </td>
                     </tr>
@@ -75,7 +110,7 @@ switch($matiereError){
             </tbody>
         </table>
         <div class="row d-block w-100 mt-4 mb-3 text-center">
-            <button type="submit" name="SaveMarks" id="" class="btn btn-success py-2 px-3 d-block mx-auto"> <i
+            <button type="submit" name="SaveMarks" value="X" id="" class="btn btn-success py-2 px-3 d-block mx-auto"> <i
                     class="fas fa-save    "></i> Sauvegarder </button>
         </div>
     </form>

@@ -29,6 +29,9 @@ class Note extends DB_Connexion implements DAO{
             trigger_error(" Note Déja insérée ! ",E_USER_NOTICE);
             return false;
         }
+        if($this->note=="NULL")
+        $string_of_insert = " UPDATE notes SET _num_etu='$this->_num_etu', _num_mat= $this->_num_mat, note=NULL WHERE id = $this->id ";
+        else
         $string_of_insert = " INSERT INTO notes(_num_etu,_num_mat,note) Select '$this->_num_etu','$this->_num_mat','$this->note' ";
         if( $this->Connexion->query( $string_of_insert) ){
             $res = $this->Connexion->query("SELECT LAST_INSERT_ID()");
@@ -61,6 +64,7 @@ class Note extends DB_Connexion implements DAO{
             trigger_error(" Note non insérée pour la modifier ! ",E_USER_NOTICE);
             return false;
         }
+        
         $string_of_update = " UPDATE notes SET _num_etu='$this->_num_etu', _num_mat= $this->_num_mat, note='$this->note' WHERE id = $this->id ";
         if( $this->Connexion->query( $string_of_update) ){
             return true;
@@ -118,6 +122,20 @@ class Note extends DB_Connexion implements DAO{
 
 
 
+    public function Set_Matiere_Notes( $MatiereID, $Notes_and_studentsIDS){
+
+        $this->Connexion->query(" DELETE FROM notes WHERE _num_mat=$MatiereID ");
+        foreach( $Notes_and_studentsIDS as $etu_id => $note ){
+
+            $Noteobj = new Note();
+            $Noteobj->_num_etu = $etu_id;
+            $Noteobj->_num_mat= $MatiereID;
+            $Noteobj->note= $note;
+
+            $Noteobj->Insert();
+        }
+        return true;
+    }
     
 
     
