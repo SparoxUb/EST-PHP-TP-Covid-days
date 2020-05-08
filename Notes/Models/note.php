@@ -173,6 +173,19 @@ class Note extends DB_Connexion implements DAO{
     }
 
     
+    public function Edit_student_Marks($studID,$Marks){
+        $this->Connexion->query(" DELETE FROM notes WHERE _num_etu=$studID ");
+        foreach($Marks as $mat_ID   =>  $mark){
+            $note= new Note();
+            $note->_num_etu = $studID;
+            $note->_num_mat = $mat_ID;
+            $note->note = $mark;
+            $note->Insert();
+        }
+        return true;
+    }
+
+
     public function __destruct()
     {
         parent::__destruct();

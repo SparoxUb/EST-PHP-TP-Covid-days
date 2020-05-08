@@ -81,7 +81,7 @@
             <div class="col-sm-12 col-lg">
 
                 <h4 class="d-block mx-auto mt-5">
-                    Module de Web Avancé et Programmation PHP
+                    Module de programmation Web Avancé & PHP
                 </h4>
 
                 <h4 class="d-block mx-auto mt-4">

@@ -6,9 +6,11 @@
 
     require_once('./Controllers/ReleveDeNotesController.php');
 
-    if( isset($matieres) ){
+    if(isset($M)){
+        require_once('./Views/modifier_releve_de_notes.php');
+    }else if( isset($matieres) ){
         require_once('./Views/Releve_de_notes.php');
-    }else{
+    }else {
         require_once('./Views/Liste_des_relevés.php');
     }
     

@@ -27,7 +27,8 @@
 
     <h2 class="h2 text-center font-weight-bold"> Relevé de Notes de : </h2>
     <h3 class="h4 mt-3 mb-1 text-center"> <a href="./Gestion_Des_Etudiants.php?i=<?php echo $Etudiant->num_etu; ?>">
-            <?php echo $Etudiant->nom_etu; ?> </a></h3>
+            <?php echo $Etudiant->nom_etu; ?> </a> <span class="ml-4"> N° <?php echo $Etudiant->num_etu; ?> </span>
+    </h3>
 
 </div>
 
@@ -58,7 +59,7 @@
                 ?>
 
                 <tr>
-                    <td class="text-right" colspan="3"> Moyenne : </td>
+                    <td class="text-right font-weight-bold" colspan="3"> Moyenne : </td>
                     <td class="text-center"> <?php echo $Moyenne; ?> </td>
                 </tr>
 
@@ -69,7 +70,8 @@
 
 <div class="w-75 mx-auto row  mt-4 mb-5 py-3">
     <div class="col text-left">
-        <a name="" id="" class="btn btn-info py-3 px-4" href="#" role="button"> <i class="fa fa-cog fa-lg"></i> Modifier
+        <a name="" id="" class="btn btn-info py-3 px-4" href="./Releves_de_Notes.php?M=<?php echo $Etudiant->num_etu ?>"
+            role="button"> <i class="fa fa-cog fa-lg"></i> Modifier
             Une note </a>
     </div>
     <div class="col text-right">
