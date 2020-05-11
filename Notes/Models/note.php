@@ -160,6 +160,7 @@ class Note extends DB_Connexion implements DAO{
         $matiere = new Matiere();
         $sql_statement = "SELECT * FROM notes WHERE _num_etu = $num_etu";
         $statement = $this->Connexion->query($sql_statement);
+        $falser = false;
         if(!$statement)
         return [];
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -167,8 +168,12 @@ class Note extends DB_Connexion implements DAO{
             if( !empty($row['note']) && $matiere->Find($row['_num_mat'])){
                 $tmp += ( (double) $row['note'] ) * ( (double) $matiere->coef );
                 $sommeDesCoefs += ( (double) $matiere->coef );
+            $falser = true;
+
             }
         }
+        if(!$falser)
+            return ' ';
         return $tmp/$sommeDesCoefs;
     }
 

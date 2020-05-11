@@ -60,7 +60,7 @@
 
                 <tr>
                     <td class="text-right font-weight-bold" colspan="3"> Moyenne : </td>
-                    <td class="text-center"> <?php echo $Moyenne; ?> </td>
+                    <td class="text-center"> <?php echo substr($Moyenne,0,5); ?> </td>
                 </tr>
 
             </tbody>
@@ -75,7 +75,9 @@
             Une note </a>
     </div>
     <div class="col text-right">
-        <a name="" id="" class="btn btn-primary py-3 px-4" href="#" role="button"><i class="fas fa-print fa-lg"></i>
+        <a name="" id="" class="btn btn-primary py-3 px-4" target="_blank"
+            href="./Releves_de_Notes.php?I=<?php echo $Etudiant->num_etu ?>" role="button"><i
+                class="fas fa-print fa-lg"></i>
             Imprimer le Relevé </a>
     </div>
 </div>
