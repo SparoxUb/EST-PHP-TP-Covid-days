@@ -191,6 +191,21 @@ class Note extends DB_Connexion implements DAO{
     }
 
 
+    public function Get_All_Matieres_Moyennes(){
+        $matiere = new Matiere();
+        $matieres = $matiere->GetAll();
+        unset($matiere);
+        $toRet = [];
+        foreach( $matieres as $matiere ){
+            $notes_de_matiere = $this->Get_Matieres_Notes($matiere->num_mat);
+            $somme = array_sum($notes_de_matiere);
+            $total = count(array_count_values($notes_de_matiere));
+            $toRet = array_merge($toRet,[ $matiere->nom_mat => ($somme/$total) ]);
+        }
+        return $toRet;
+    }
+
+
     public function __destruct()
     {
         parent::__destruct();
