@@ -5,7 +5,7 @@
         <?php 
             $Form_Obj = new Formulaire('Loisirs & Intérets: ','POST','./Create.php','0');
                 
-                echo '<h2 class="h2 text-center"> Entrez trois de vos loisirs et interets (optionelles) : </h2>';
+                echo '<h2 class="h2 text-center"> Entrez trois de vos loisirs et interets : </h2>';
 
 
                 $Form_Obj->Create_Input('text','L1','Voyage');
