@@ -1,3 +1,0 @@
-1:2018:Lycee dakhla:Bac:SMA
-2:2017:Lycee dakhla:BAC SMA:BAC SMA
-3:2020:EStA:CCNA sec:Security Certificat

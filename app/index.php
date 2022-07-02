@@ -1,3 +1,8 @@
+<?php 
+error_reporting(E_ERROR | E_PARSE);
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -5,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Tp</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <style>
     body {
         font-family: Source Sans Pro;
@@ -30,7 +35,7 @@
         <div class="row my-5 w-100">
 
             <div class="col-sm-12 col-lg mt-4">
-                <a name="" id="" class="btn btn-primary py-4 px-4 w-100" href="./CV/" role="button">
+                <a name="" id="" class="btn btn-primary py-4 px-4 w-100" href="./Cv/" role="button">
                     <span class="h3 font-weight-bold">
                         Problème 1:
                     </span>

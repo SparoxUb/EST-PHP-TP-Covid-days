@@ -1,4 +1,5 @@
 <?php 
+    session_start();
 
     /// Window Settings
     $title="CV : Création";
@@ -7,7 +8,6 @@
 
 
     
-    session_start();
     require_once('./Classes/Formulaire.php');
     
 

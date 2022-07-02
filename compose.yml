@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql
+    container_name: mysql-db
+    volumes:
+      - db-volume:/var/lib/mysql
+      - ./DB.sql:/docker-entrypoint-initdb.d/DB.sql
+    restart: always
+    environment:
+      MYSQL_DATABASE: gestion_notes
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - 3306:3306
+    networks:
+      - app-db-network
+
+  app:
+    image: estphp:latest
+    container_name: php-app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD:
+      DB_NAME: gestion_notes
+    ports:
+      - 80:80
+    networks:
+      - app-db-network
+
+volumes:
+  db-volume:
+    driver: local
+
+networks:
+  app-db-network:

@@ -1,14 +1,13 @@
 <?php 
+     session_start();
+     // if session is on go to current cv view else show login space to create session
 
     /// Window Settings
     $title="CV : Consultation";
     $tab=3;
     require_once('./Components/header.php');
 
-
-
-    session_start();
-    // if session is on go to current cv view else show login space to create session
+  
 
     if( isset($_POST['login'])){
         require_once('./Controllers/login_Controller.php');

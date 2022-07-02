@@ -11,12 +11,12 @@
     <title> <?php echo $title ?> </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/simple-sidebar.css" rel="stylesheet">
+    <link href="/css/simple-sidebar.css" rel="stylesheet">
 
-    <script src="../js/jquery-3.4.1.slim.min.js"></script>
+    <script src="/js/jquery-3.4.1.slim.min.js"></script>
 </head>
 
 <body>
