@@ -17,7 +17,7 @@ services:
       - app-db-network
 
   app:
-    image: estphp:latest
+    image: scoma/estphp:latest
     container_name: php-app
     restart: always
     depends_on:
